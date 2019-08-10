@@ -85,5 +85,11 @@ def get_apploances():
     return make_response(jsonify(res.json()))
 
 
+@app.route('/signals')
+def get_aircon_signals():
+    res = fetch(APPLIANCES + '/' + AIRCON_ID + SIGNALS)
+    return make_response(jsonify(res.json()))
+
+
 if __name__ == '__main__':
     app.run(debug=True)
