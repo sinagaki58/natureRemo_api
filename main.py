@@ -1,7 +1,8 @@
 import requests
 import os
 from entrypoint import *
-from flask import Flask, jsonify, make_response
+from flask import Flask, jsonify, make_response, redirect, url_for
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -23,6 +24,11 @@ def fetch(end_point: str):
         return None
 
 
+# util
+def parse_date_time(date_str: str):
+    tz_jst = timedelta(hours=9)
+    date_str = date_str.replace('Z', '')
+    return (datetime.fromisoformat(date_str) + tz_jst).strftime('%Y-%m-%d %H:%M:%S')
 @app.route('/temperature')
 def get_temperature():
     res = fetch(DEVICES)
