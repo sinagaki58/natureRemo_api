@@ -7,17 +7,34 @@ from datetime import datetime, timedelta
 app = Flask(__name__)
 
 
-def fetch(end_point: str):
+# fetcher
+def get_headers():
     token = os.environ['NATURE_REMO']
-    base_url = 'https://api.nature.global/1'
-    url = base_url + end_point
     headers = {
         'content-type': 'application/json',
         'Authorization': 'Bearer ' + token
     }
+    return headers
+
+
+def fetch(end_point: str):
+    url = BASE_URL + end_point
+    headers = get_headers()
 
     try:
         res = requests.get(url, headers=headers)
+        return res
+    except Exception as e:
+        print(e)
+        return None
+
+
+def post(end_point: str):
+    url = BASE_URL + end_point
+    headers = get_headers()
+
+    try:
+        res = requests.post(url, headers=headers)
         return res
     except Exception as e:
         print(e)
