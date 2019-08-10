@@ -5,6 +5,8 @@ from flask import Flask, jsonify, make_response, redirect, url_for
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
+BASE_URL = 'https://api.nature.global/1'
+AIRCON_ID = '9d348ad6-7269-4f4a-a0e7-e56e1c6c9a23'
 
 
 # fetcher
@@ -84,4 +86,4 @@ def get_apploances():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
