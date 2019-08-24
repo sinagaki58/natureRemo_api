@@ -1,7 +1,7 @@
 import entrypoint
 import util
 import repository
-import flask 
+import flask
 
 app = flask.Flask(__name__)
 
@@ -40,12 +40,5 @@ def get_apploances():
     return flask.make_response(flask.jsonify(res.json()))
 
 
-AIRCON_ID = '9d348ad6-7269-4f4a-a0e7-e56e1c6c9a23'
-@app.route('/signals')
-def get_aircon_signals():
-    res = repository.fetch(entrypoint.APPLIANCES + '/' + AIRCON_ID + entrypoint.SIGNALS)
-    return flask.make_response(flask.jsonify(res.json()))
-
-
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
